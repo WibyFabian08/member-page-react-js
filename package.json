@@ -12,6 +12,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
+    "watch:css": "postcss --watch tailwindcss/style.css -o src/assets/css/style.css",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
