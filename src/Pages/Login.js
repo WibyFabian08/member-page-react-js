@@ -3,8 +3,11 @@ import React from 'react';
 import Header from '../parts/Header';
 import Footer from '../parts/Footer';
 import FormLogin from '../parts/FormLogin';
+import { useSelector } from 'react-redux';
 
 const Login = () => {
+    const globalState = useSelector((state) => state.globalReducer);
+
     return (
         <>
             <section className="container mx-auto mt-10 overflow-hidden">

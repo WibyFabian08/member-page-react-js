@@ -4,9 +4,12 @@ import { withRouter } from "react-router-dom";
 import Poto from "../assets/images/poto-mbak-login.png";
 import { useForm } from "../helpers/hooks/useForm";
 
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginAction } from "../redux/action/authAction";
 
 const FormLogin = ({ history }) => {
+  const dispatch = useDispatch();
+
   const [form, setForm] = useForm({
     email: "",
     password: "",
@@ -15,58 +18,9 @@ const FormLogin = ({ history }) => {
   function submit(e) {
     e.preventDefault();
 
-    axios
-      .post("http://localhost:4000/users/login", {
-        email: form.email,
-        password: form.password,
-      })
-      .then((result) => {
-        axios
-          .get("http://localhost:4000/users", {
-            headers: {
-              Authorization: result.data.token,
-            },
-          })
-          .then((detail) => {
-            const production =
-              process.env.REACT_APP_FRONTPAGE_URL === "http://localhost:3000/"
-                ? "http://localhost:3000/"
-                : "";
+    dispatch(loginAction(form, history));
 
-            // simpan token ke localstorage
-            localStorage.setItem(
-              "BWAMICRO:token",
-              JSON.stringify({ ...result.data, email: form.email })
-            );
-
-            // get localstorage redirect
-            const redirect = localStorage.getItem("BWAMICRO:redirect");
-
-            // buat variable data cookie
-            const userCookie = {
-              name: detail.data.data.name,
-              avatar: detail.data.data.avatar,
-            };
-
-            // buat expires cookies
-            const expires = new Date(new Date().getTime() + 7 * 24 * 60 * 1000);
-
-            // buat cookies
-            document.cookie = `BWAMICRO:user=${JSON.stringify(
-              userCookie
-            )}; expires=${expires.toUTCString()}; path:/; ${production}`;
-
-            history.push(redirect || "/");
-
-            setForm("reset");
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setForm("reset");
   }
   return (
     <div className="flex justify-center items-center mx-auto">
