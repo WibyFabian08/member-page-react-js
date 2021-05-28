@@ -19,7 +19,7 @@ function Header(props) {
                     <li><Link to="/" className={[linkColor, "px-6 py-3 hover:text-green-400"].join(" ")}>Pricing</Link></li>
                     <li><Link to="/" className={[linkColor, "px-6 py-3 hover:text-green-400"].join(" ")}>Features</Link></li>
                     <li><Link to="/" className={[linkColor, "px-6 py-3 hover:text-green-400"].join(" ")}>Story</Link></li>
-                    <li><Link to="/" className="text-white px-6 py-3 ml-3 bg-indigo-400 hover:bg-indigo-500">{props.login ? 'Masuk' : 'Daftar'}</Link></li>
+                    <li><Link to="/" className="text-white px-6 py-3 ml-3 bg-indigo-500 hover:bg-indigo-400">{props.login ? 'Masuk' : 'Daftar'}</Link></li>
                 </ul>
         </header>
     )

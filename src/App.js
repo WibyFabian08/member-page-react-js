@@ -8,12 +8,13 @@ import MemberRoute from "./components/Routes/MemberRoute";
 import GuestRoute from "./components/Routes/GuestRoute";
 
 import Login from "./Pages/Login";
-import NotFound from "./Pages/404";
+import NotFound from "./Pages/401";
 import MyClass from "./Pages/MyClass";
-import UnAuthenticated from "./Pages/404";
+import UnAuthenticated from "./Pages/401";
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import Register from "./Pages/Register";
 
 function App() {
   const history = createBrowserHistory({
@@ -26,6 +27,7 @@ function App() {
         <Router history={history}>
           <Switch>
             <GuestRoute path="/login" component={Login}></GuestRoute>
+            <GuestRoute path="/register" component={Register}></GuestRoute>
             <GuestRoute
               path="/private"
               component={UnAuthenticated}

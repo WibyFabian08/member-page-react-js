@@ -1,11 +1,11 @@
 import React from 'react';
 
-const UnAuthenticated = () => {
+const NotFound = () => {
     return (
         <div className="container p-6 mx-auto">
-            <h1>401 | UnAuthenticated</h1>
+            <h1>404 | Page Not Found</h1>
         </div>
     )
 }
 
-export default UnAuthenticated;
+export default NotFound;

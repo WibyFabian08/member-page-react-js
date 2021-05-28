@@ -16,6 +16,9 @@ export const loginAction = (form, history) => (dispatch) => {
                 ? "http://localhost:3000/"
                 : "";
 
+            // simpan data detail user ke global state
+            dispatch({type: "SET_USER_DETAILS", value: detail.data.data});
+
             // simpan token ke localstorage
             localStorage.setItem(
               "BWAMICRO:token",

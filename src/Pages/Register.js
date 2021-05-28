@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import Footer from '../parts/Footer';
-import FormLogin from '../parts/FormLogin';
+
 import Header from '../parts/Header';
+import Footer from '../parts/Footer';
+import FormRegister from '../parts/FormRegister';
 
-
-const Login = () => {
+const Register = () => {
     useEffect(() => {
         window.scroll(0, 0);
       }, []);
@@ -15,7 +15,7 @@ const Login = () => {
                 <Header dark></Header>
             </section>
             <section className="mt-20">
-                <FormLogin></FormLogin>
+                <FormRegister></FormRegister>
             </section>
             <section className="mt-24">
                 <Footer></Footer>
@@ -24,4 +24,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Register;

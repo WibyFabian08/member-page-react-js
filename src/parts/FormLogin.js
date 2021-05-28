@@ -6,6 +6,7 @@ import { useForm } from "../helpers/hooks/useForm";
 
 import { useDispatch } from "react-redux";
 import { loginAction } from "../redux/action/authAction";
+import Input from "../components/Form/Input";
 
 const FormLogin = ({ history }) => {
   const dispatch = useDispatch();
@@ -32,38 +33,22 @@ const FormLogin = ({ history }) => {
           <span className="font-bold">Continue</span> Study, <br /> Finish Your{" "}
           <span className="font-bold">Goals</span>
         </h1>
-        <div className="mb-4 w-full">
-          <label
-            htmlFor="email"
-            className="text-md"
-            style={{ color: "#132B50" }}
-          >
-            Email Address
-          </label>
-          <input
-            type="text"
-            value={form.email}
-            onChange={(e) => setForm("email", e.target.value)}
-            placeholder="Your Email Address"
-            className="w-full bg-white focus:outline-none px-4 py-2 border border-gray-400 focus:border-green-300"
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="passpord"
-            className="text-md"
-            style={{ color: "#132B50" }}
-          >
-            Password
-          </label>
-          <input
-            type="password"
-            value={form.password}
-            onChange={(e) => setForm("password", e.target.value)}
-            placeholder="Your Password"
-            className="w-full bg-white focus:outline-none px-4 py-2 border border-gray-400 focus:border-green-300"
-          />
-        </div>
+        <Input
+          name="email"
+          labelname="Email Address"
+          placeholder="Your Email Address"
+          type="text"
+          value={form.email}
+          onChange={(e) => setForm('email', e.target.value)}
+        ></Input>
+         <Input
+          name="password"
+          labelname="Password"
+          placeholder="Your Password"
+          type="password"
+          value={form.password}
+          onChange={(e) => setForm('password', e.target.value)}
+        ></Input>
         <button
           type="submit"
           className="button-form w-full px-4 py-2 text-white mt-2"

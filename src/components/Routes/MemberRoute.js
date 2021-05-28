@@ -9,9 +9,7 @@ const MemberRoute = ({
   ...rest
 }) => {
   const ok = localStorage.getItem("BWAMICRO:token");
-  console.log('rest : ', rest);
-  console.log('location : ', location);
-  console.log('match : ', match);
+  
   localStorage.removeItem("BWAMICRO:redirect");
 
   return (
