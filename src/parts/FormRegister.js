@@ -1,15 +1,22 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Poto from "../assets/images/poto-mas-register.png";
 import Input from "../components/Form/Input";
 import Select from "../components/Form/Select";
+import fieldErrors from "../helpers/fieldErrors";
 import { useForm } from "../helpers/hooks/useForm";
+import { registerAction } from "../redux/action/authAction";
 
 
 
 const FormRegister = ({ history }) => {
   const dispatch = useDispatch();
+
+  const [errors, setErrors] = useState(null);
+
+  const ERROR = fieldErrors(errors);
 
   const [form, setForm] = useForm({
     name: "",
@@ -19,12 +26,24 @@ const FormRegister = ({ history }) => {
     otherProfession: "",
   });
 
+  const data = {
+    name: form.name,
+    email: form.email,
+    password: form.password,
+    profession: form.profession === 'Others' ? form.otherProfession : form.profession
+  }
+
   function submit(e) {
     e.preventDefault();
 
-    console.log('Data : ', form);
+    axios.post('http://localhost:4000/users/register', data).then((result) => {
+      console.log(result.data);
+      history.push('/login')
+    }).catch((err) => {
+      setErrors(err?.response?.data?.message)
+    })
 
-    // dispatch(loginAction(form, history));
+    // dispatch(registerAction(form, history));
 
     // setForm("reset");
   }
@@ -40,6 +59,7 @@ const FormRegister = ({ history }) => {
           </h1>
           <Input
             name="name"
+            error={ERROR?.name?.message}
             labelname="Full Name"
             placeholder="Your Name"
             type="text"
@@ -50,6 +70,7 @@ const FormRegister = ({ history }) => {
           <Input
             name="email"
             labelname="Email Address"
+            error={ERROR?.email?.message}
             placeholder="Your Email Address"
             type="text"
             value={form.email}
@@ -59,6 +80,7 @@ const FormRegister = ({ history }) => {
           <Input
             name="password"
             labelname="Password"
+            error={ERROR?.password?.message}
             placeholder="Your Password"
             type="password"
             value={form.password}

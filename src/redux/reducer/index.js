@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 
-import { globalReducer } from "../reducer/globalReducer";
+import { errorReducer } from "../reducer/globalReducer";
 import { loginReducer, userReducer } from "../reducer/authReducer";
 
 const reducer = combineReducers({
-  globalReducer,
+  errorReducer,
   loginReducer,
   userReducer,
 });

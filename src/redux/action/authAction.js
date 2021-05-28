@@ -45,10 +45,14 @@ export const loginAction = (form, history) => (dispatch) => {
             history.push(redirect || "/");
           })
           .catch((err) => {
-            console.log(err);
+            console.log(err.response.data.message);
           });
       })
       .catch((err) => {
-        console.log(err);
+        dispatch({type: 'SET_ERROR', value: err?.response?.data?.message});
       });
+}
+
+export const registerAction = () => (dispatch) => {
+  
 }

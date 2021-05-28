@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 
 import Poto from "../assets/images/poto-mbak-login.png";
 import { useForm } from "../helpers/hooks/useForm";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../redux/action/authAction";
 import Input from "../components/Form/Input";
+import fieldErrors from "../helpers/fieldErrors";
 
 const FormLogin = ({ history }) => {
   const dispatch = useDispatch();
+
+  const globalError = useSelector((state) => state.errorReducer);
+
+  const ERROR = fieldErrors(globalError);
 
   const [form, setForm] = useForm({
     email: "",
@@ -36,6 +41,7 @@ const FormLogin = ({ history }) => {
         <Input
           name="email"
           labelname="Email Address"
+          error={ERROR?.email?.message}
           placeholder="Your Email Address"
           type="text"
           value={form.email}
@@ -44,6 +50,7 @@ const FormLogin = ({ history }) => {
          <Input
           name="password"
           labelname="Password"
+          error={ERROR?.password?.message}
           placeholder="Your Password"
           type="password"
           value={form.password}
