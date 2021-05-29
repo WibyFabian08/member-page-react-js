@@ -8,8 +8,9 @@ import MemberRoute from "./components/Routes/MemberRoute";
 import GuestRoute from "./components/Routes/GuestRoute";
 
 import Login from "./Pages/Login";
-import NotFound from "./Pages/401";
 import MyClass from "./Pages/MyClass";
+
+import NotFound from "./Pages/404";
 import UnAuthenticated from "./Pages/401";
 
 import { Provider } from "react-redux";

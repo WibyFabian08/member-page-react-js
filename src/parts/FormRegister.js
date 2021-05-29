@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Poto from "../assets/images/poto-mas-register.png";
 import Input from "../components/Form/Input";
@@ -14,9 +14,9 @@ import { registerAction } from "../redux/action/authAction";
 const FormRegister = ({ history }) => {
   const dispatch = useDispatch();
 
-  const [errors, setErrors] = useState(null);
+  const registerError = useSelector((state) => state.errorReducer);
 
-  const ERROR = fieldErrors(errors);
+  const ERROR = fieldErrors(registerError);
 
   const [form, setForm] = useForm({
     name: "",
@@ -36,14 +36,7 @@ const FormRegister = ({ history }) => {
   function submit(e) {
     e.preventDefault();
 
-    axios.post('http://localhost:4000/users/register', data).then((result) => {
-      console.log(result.data);
-      history.push('/login')
-    }).catch((err) => {
-      setErrors(err?.response?.data?.message)
-    })
-
-    // dispatch(registerAction(form, history));
+    dispatch(registerAction(data, history));
 
     // setForm("reset");
   }
@@ -121,14 +114,16 @@ const FormRegister = ({ history }) => {
         </form>
       </div>
 
-      <div className="w-5/12 hidden sm:block overflow-hidden flex justify-end">
+      <div className="w-1/12 hidden sm:block"></div>
+
+      <div className="w-5/12 hidden sm:block overflow-hidden">
         <div className="w-1/2 hidden md:block">
-          <div className="relative" style={{ height: 440, width: 369 }}>
+          <div className="relative" style={{ height: 500, width: 369 }}>
             <div
-              className="border absolute left-32 border-indigo-400 top-10 -right-60 mb-5"
+              className="border absolute left-0 border-indigo-400 top-10 -right-60 mb-5"
               style={{ height: 350, width: 300 }}
             ></div>
-            <div className="absolute h-full mt-16 right-12 top-0 -mr-32">
+            <div className="absolute h-full mt-16 right-12 top-0 -mr-32 left-8">
               <img
                 style={{ height: 350, width: 300 }}
                 className="object-cover"
@@ -137,13 +132,13 @@ const FormRegister = ({ history }) => {
               />
             </div>
             <div
-              className="absolute bottom-0 transform translate-x-full bg-white mt-32 py-4 px-4"
+              className="absolute bottom-8 left-1/3 bg-white mt-32 py-4 px-4 border border-gray-200"
               style={{ height: 113, width: 290 }}
             >
               <p className="font-regular mb-4" style={{ color: "#132B50" }}>
                 Semua sudah terarah dengan baik dan perlu ikuti saja
               </p>
-              <p className="text-gray-400 text-sm">Tamara, UX Designer</p>
+              <p className="text-gray-400 text-sm">Mike, Ui Designer</p>
             </div>
           </div>
         </div>
