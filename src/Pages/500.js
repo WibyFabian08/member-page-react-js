@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Link} from 'react-router-dom';
 
-const UnAuthenticated = () => {
+const ServerError = () => {
     return (
         <div className="container flex flex-col justify-center items-center h-screen mx-auto">
             <img src={`${process.env.PUBLIC_URL}images/no-access.png`} alt="" />
@@ -13,4 +13,4 @@ const UnAuthenticated = () => {
     )
 }
 
-export default UnAuthenticated;
+export default ServerError;

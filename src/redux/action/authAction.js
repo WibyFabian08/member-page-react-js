@@ -49,6 +49,7 @@ export const loginAction = (form, history) => (dispatch) => {
         });
     })
     .catch((err) => {
+      console.log(err.response.data.message);
       dispatch({ type: "SET_ERROR", value: err?.response?.data?.message });
     });
 };
@@ -63,3 +64,18 @@ export const registerAction = (data, history) => (dispatch) => {
       dispatch({ type: "SET_ERROR", value: err?.response?.data?.message });
     });
 };
+
+export const logoutAction = (token, history) => (dispatch) => {
+  axios.post("http://localhost:4000/users/logout", {
+    headers: {
+      Authorization: token
+    },
+  }).then(() => {
+    localStorage.removeItem("BWAMICRO:token");
+    history.push("/login");
+  })
+  .catch((err) => {
+    console.log(err.config);
+    console.log(err.response.data.message);
+  });
+}

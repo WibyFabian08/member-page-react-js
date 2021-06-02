@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Poto from "../assets/images/poto-mas-register.png";
@@ -38,7 +37,7 @@ const FormRegister = ({ history }) => {
 
     dispatch(registerAction(data, history));
 
-    // setForm("reset");
+    setForm("reset");
   }
   return (
     <div className="flex justify-center items-center mx-auto">
@@ -109,7 +108,7 @@ const FormRegister = ({ history }) => {
             type="submit"
             className="button-form w-full px-4 py-2 text-white mt-5"
           >
-            Masuk
+            Daftar
           </button>
         </form>
       </div>

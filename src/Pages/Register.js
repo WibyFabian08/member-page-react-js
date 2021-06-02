@@ -4,7 +4,7 @@ import Header from '../parts/Header';
 import Footer from '../parts/Footer';
 import FormRegister from '../parts/FormRegister';
 
-const Register = () => {
+const Register = (props) => {
     useEffect(() => {
         window.scroll(0, 0);
       }, []);
@@ -12,7 +12,7 @@ const Register = () => {
     return (
         <>
             <section className="container mx-auto mt-10 overflow-hidden">
-                <Header dark></Header>
+                <Header dark path='register'></Header>
             </section>
             <section className="mt-20">
                 <FormRegister></FormRegister>
