@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Empty from "../assets/images/icon-kelas-null.png";
 import ListClassItem from "../parts/ListClassItem";
 import Loading from "../parts/Loading";
 import SideBar from "../parts/SideBar";
+import { myCourseAction } from "../redux/action/courseAction";
 
 const EmptyState = () => {
   return (
@@ -29,12 +31,12 @@ const EmptyState = () => {
 
 const MyClass = () => {
   window.scroll(0, 0);
+  
+  const dispatch = useDispatch();
+  const myCourse = useSelector((state) => state.myCourseReducer);
+  const status = useSelector((state) => state.statusReducer);
 
-  const [status, setStatus] = useState("idle");
-
-  const [data, setdata] = useState({});
-
-  console.log('Data : ', data);
+  console.log(myCourse.length);
 
   // const courseData = data.reduce((acc, item) => {
   //   acc[item.course_id] = item;
@@ -45,22 +47,9 @@ const MyClass = () => {
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem("BWAMICRO:token"));
 
-    setStatus("loading");
+    // console.log(token)
+    dispatch(myCourseAction(token.refresh_token));
 
-    axios
-      .get("http://localhost:4000/my-courses", {
-        headers: {
-          Authorization: token.refresh_token,
-        },
-      })
-      .then((result) => {
-        setStatus("ok");
-        setdata(result.data.data);
-      })
-      .catch((err) => {
-        setStatus("error");
-        console.log(err.response.data.message);
-      });
   }, []);
 
   // const [data, setData] = useState(null);
@@ -84,7 +73,7 @@ const MyClass = () => {
       <section className="flex-1">
         {status === "loading" && <Loading></Loading>}
         {status === "ok" &&
-          (data.length > 0 ? (
+          (myCourse.length > 0 ? (
             <section className="p-5 flex-col">
               <h1
                 className="text-3xl font-semibold ml-8 md:ml-0 mt-5 md:mt-0 md:mb-5"
@@ -94,7 +83,7 @@ const MyClass = () => {
               </h1>
               <p className="text-sm text-gray-400 ml-8 md:ml-0">Continue learning to pursue your dreams</p>
               <div className="flex flex-wrap">
-                {Object.values(data).map((item, index) => {
+                {myCourse.map((item, index) => {
                   return <ListClassItem key={index} data={item}></ListClassItem>;
                 })}
               </div>
