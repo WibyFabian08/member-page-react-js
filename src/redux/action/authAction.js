@@ -69,7 +69,7 @@ export const logoutAction = (token, history) => (dispatch) => {
   axios.post("http://localhost:4000/users/logout", {
     headers: {
       Authorization: token
-    },
+    }
   }).then(() => {
     localStorage.removeItem("BWAMICRO:token");
     history.push("/login");
