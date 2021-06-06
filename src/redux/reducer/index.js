@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 
-import { errorReducer } from "./globalReducer";
+import { errorReducer, tokenReducer } from "./globalReducer";
 import { loginReducer, userReducer } from "./authReducer";
-import { statusReducer, myCourseReducer } from "./courseReducer";
+import { statusReducer, myCourseReducer, messageReducer } from "./courseReducer";
 
 const reducer = combineReducers({
   errorReducer,
@@ -10,6 +10,8 @@ const reducer = combineReducers({
   userReducer,
   statusReducer,
   myCourseReducer,
+  messageReducer,
+  tokenReducer
 });
 
 export default reducer;

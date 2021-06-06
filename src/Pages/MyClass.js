@@ -1,10 +1,9 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Empty from "../assets/images/icon-kelas-null.png";
 import ListClassItem from "../parts/ListClassItem";
-import Loading from "../parts/Loading";
+import Status from "../parts/Status";
 import SideBar from "../parts/SideBar";
 import { myCourseAction } from "../redux/action/courseAction";
 
@@ -30,27 +29,20 @@ const EmptyState = () => {
 };
 
 const MyClass = () => {
-  window.scroll(0, 0);
-  
+
   const dispatch = useDispatch();
+
   const myCourse = useSelector((state) => state.myCourseReducer);
   const status = useSelector((state) => state.statusReducer);
-
-  console.log(myCourse.length);
-
-  // const courseData = data.reduce((acc, item) => {
-  //   acc[item.course_id] = item;
-  //   return acc;
-  // }, {});
-
+  const message = useSelector((state) => state.messageReducer);
 
   useEffect(() => {
+    window.scroll(0, 0);
     let token = JSON.parse(localStorage.getItem("BWAMICRO:token"));
 
-    // console.log(token)
     dispatch(myCourseAction(token.refresh_token));
 
-  }, []);
+  }, [dispatch]);
 
   // const [data, setData] = useState(null);
 
@@ -71,7 +63,8 @@ const MyClass = () => {
     <div className="flex">
       <SideBar></SideBar>
       <section className="flex-1">
-        {status === "loading" && <Loading></Loading>}
+        {status === "loading" && <Status label="Wait! we are doing some research!!!"></Status>}
+        {status === "error" && <Status label={message}></Status>}
         {status === "ok" &&
           (myCourse.length > 0 ? (
             <section className="p-5 flex-col">

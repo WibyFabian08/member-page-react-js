@@ -6,7 +6,7 @@ import MenuBlack from "../assets/images/menu-black.png";
 import Menu from "../assets/images/menu.png";
 import { logoutAction } from "../redux/action/authAction";
 
-const SideBar = ({ match, history, token }) => {
+const SideBar = ({ match, history }) => {
   const [data, setData] = useState(null);
   const [toggleMenu, setToggleMenu] = useState(false);
   const [left, setLeft] = useState(700);
@@ -41,7 +41,7 @@ const SideBar = ({ match, history, token }) => {
   
   const logout = () => {
     
-    dispatch(logoutAction(data.refresh_token, history));
+    dispatch(logoutAction(data.refresh_token, history, data.data.id));
 
   };
 

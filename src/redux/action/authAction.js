@@ -65,17 +65,19 @@ export const registerAction = (data, history) => (dispatch) => {
     });
 };
 
-export const logoutAction = (token, history) => (dispatch) => {
-  axios.post("http://localhost:4000/users/logout", {
-    headers: {
-      Authorization: token
-    }
-  }).then(() => {
-    localStorage.removeItem("BWAMICRO:token");
-    history.push("/login");
-  })
-  .catch((err) => {
-    console.log(err.config);
-    console.log(err.response.data.message);
-  });
-}
+export const logoutAction = (token, history, id) => (dispatch) => {
+    axios
+      .post("http://localhost:4000/users/logout", {user_id: id}, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then(() => {
+        localStorage.removeItem("BWAMICRO:token");
+        history.push("/login");
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+ 
+};

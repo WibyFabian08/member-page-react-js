@@ -13,6 +13,8 @@ export const myCourseAction = (token) => (dispatch) => {
         dispatch({type: 'SET_MY_COURSE', value: result.data.data});
       })
       .catch((err) => {
-        dispatch({type: 'SET_LOADING', value: 'error'});
+        dispatch({type: 'SET_STATUS', value: 'error'});
+        dispatch({type: 'SET_MESSAGE', value: err.response.data.message});
+        // console.log('error : ', err.response.data.message)
       });
 }
