@@ -1,26 +1,21 @@
-import React, { useEffect } from "react";
 import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Router, Switch } from "react-router-dom";
 
 import "./assets/css/style.css";
 
-import MemberRoute from "./components/Routes/MemberRoute";
-import GuestRoute from "./components/Routes/GuestRoute";
-
-import Login from "./Pages/Login";
-import MyClass from "./Pages/MyClass";
-
-import NotFound from "./Pages/404";
-import UnAuthenticated from "./Pages/401";
-
-import { Provider, useDispatch } from "react-redux";
-import store from "./redux/store";
-import Register from "./Pages/Register";
-import Joined from "./Pages/Joined";
 import { setAuthorizationHeader } from "./configs/axios";
 
+import GuestRoute from "./components/Routes/GuestRoute";
+import MemberRoute from "./components/Routes/MemberRoute";
+import UnAuthenticated from "./Pages/401";
+import NotFound from "./Pages/404";
+import Joined from "./Pages/Joined";
+import Login from "./Pages/Login";
+import MyClass from "./Pages/MyClass";
+import Register from "./Pages/Register";
+
 function App() {
-  const dispatch = useDispatch();
   const history = createBrowserHistory({
     basename: process.env.PUBLIC_URL,
   });

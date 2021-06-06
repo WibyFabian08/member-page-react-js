@@ -7,7 +7,16 @@ export const myCourseReducer = (state = initialCourseState, action) => {
     return state;
 }
 
-const initialStatusState = 'idle';
+const initDatajoinClassState = {};
+
+export const datajoinClassReducer = (state = initDatajoinClassState, action) => {
+    if(action.type === 'SET_JOIN_CLASS') {
+        return action.value;
+    }
+    return state;
+}
+
+const initialStatusState = 'ok';
 
 export const statusReducer = (state = initialStatusState, action) => {
     if(action.type === 'SET_STATUS') {
@@ -16,7 +25,7 @@ export const statusReducer = (state = initialStatusState, action) => {
     return state;
 }
 
-const initialMessageState = 'message';
+const initialMessageState = '';
 
 export const messageReducer = (state = initialMessageState, action) => {
     if(action.type === 'SET_MESSAGE') {
