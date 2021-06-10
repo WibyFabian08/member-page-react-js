@@ -69,12 +69,12 @@ const MyClass = () => {
           (myCourse.length > 0 ? (
             <section className="p-5 flex-col">
               <h1
-                className="text-3xl font-semibold ml-8 md:ml-0 mt-5 md:mt-0 md:mb-5"
+                className="text-3xl font-semibold ml-8 md:ml-0 mt-5 md:mt-0 mb-3 md:mb-0 px-5"
                 style={{ color: "#132B50" }}
               >
                 My CLass
               </h1>
-              <p className="text-sm text-gray-400 ml-8 md:ml-0">Continue learning to pursue your dreams</p>
+              <p className="text-sm text-gray-400 ml-8 md:ml-0 px-5">Continue learning to pursue your dreams</p>
               <div className="flex flex-wrap">
                 {myCourse.map((item, index) => {
                   return <ListClassItem key={index} data={item}></ListClassItem>;

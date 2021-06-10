@@ -43,3 +43,7 @@ export const joinClassAction = (id, history) => (dispatch) => {
       dispatch({ type: "SET_MESSAGE", value: err.response.data.message });
     });
 };
+
+export const detailClassAction = () => (dispatch) => {
+  
+}

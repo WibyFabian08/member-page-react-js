@@ -14,6 +14,7 @@ import Joined from "./Pages/Joined";
 import Login from "./Pages/Login";
 import MyClass from "./Pages/MyClass";
 import Register from "./Pages/Register";
+import DetailClass from "./Pages/DetailClass";
 
 function App() {
   const history = createBrowserHistory({
@@ -41,6 +42,18 @@ function App() {
             exact
             path="/joined/:class"
             component={Joined}
+          ></MemberRoute>
+
+          <MemberRoute
+            exact
+            path="/courses/:class"
+            component={DetailClass}
+          ></MemberRoute>
+
+          <MemberRoute
+            exact
+            path="/courses/:class/:chapter/:uid"
+            component={DetailClass}
           ></MemberRoute>
 
           <Route path="*" component={NotFound}></Route>

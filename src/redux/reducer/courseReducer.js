@@ -16,7 +16,7 @@ export const datajoinClassReducer = (state = initDatajoinClassState, action) => 
     return state;
 }
 
-const initialStatusState = 'ok';
+const initialStatusState = 'idle';
 
 export const statusReducer = (state = initialStatusState, action) => {
     if(action.type === 'SET_STATUS') {
