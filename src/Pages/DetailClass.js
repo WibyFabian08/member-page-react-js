@@ -23,7 +23,7 @@ const DetailClass = ({ match }) => {
         setData(result.data.data);
       })
       .catch((err) => {
-        dispatch({ type: "SET_MESSAGE", value: err.response.data.message });
+        dispatch({ type: "SET_MESSAGE", value: err?.response?.data?.message });
         console.log(err.response.data.message);
       });
   }, [dispatch, match.params.class]);
@@ -32,13 +32,14 @@ const DetailClass = ({ match }) => {
 
   if (status === "ok" && data?.chapter) {
     currentChapter =
-      data?.chapter.find((chapter) => +chapter.id === +match.params.chapter) ??
+      data?.chapter.find((chapter) => +chapter?.id === +match.params.chapter) ??
       data.chapter[0];
-
-    currentLesson =
-      currentChapter?.lesson.find(
-        (lesson) => lesson.video === match.params.uid
-      ) ?? currentChapter.lesson[0];
+    if(currentChapter?.lesson) {
+      currentLesson =
+        currentChapter?.lesson?.find(
+          (lesson) => lesson.video === match.params.uid
+        ) ?? currentChapter.lesson[0];
+    }
   }
 
   return (

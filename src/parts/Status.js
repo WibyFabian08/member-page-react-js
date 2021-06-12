@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 const Status = ({label, orderError}) => {
   return (
     <div className="container flex flex-col justify-center items-center h-screen mx-auto">
-      <h1 className="text-3xl mt-10 font-semibold capitalize" style={{ color: "#132B50" }}>
+      <h1 className="text-3xl text-center mt-10 font-semibold capitalize" style={{ color: "#132B50" }}>
         {label}
       </h1>
       {

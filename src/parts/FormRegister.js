@@ -8,8 +8,6 @@ import fieldErrors from "../helpers/fieldErrors";
 import { useForm } from "../helpers/hooks/useForm";
 import { registerAction } from "../redux/action/authAction";
 
-
-
 const FormRegister = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -29,8 +27,9 @@ const FormRegister = ({ history }) => {
     name: form.name,
     email: form.email,
     password: form.password,
-    profession: form.profession === 'Others' ? form.otherProfession : form.profession
-  }
+    profession:
+      form.profession === "Others" ? form.otherProfession : form.profession,
+  };
 
   function submit(e) {
     e.preventDefault();

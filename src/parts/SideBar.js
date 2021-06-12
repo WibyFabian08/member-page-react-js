@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import DefaultUser from "../assets/images/icon-photo-null.png";
 import MenuBlack from "../assets/images/menu-black.png";
@@ -10,6 +10,8 @@ const SideBar = ({ match, history }) => {
   const [data, setData] = useState(null);
   const [toggleMenu, setToggleMenu] = useState(false);
   const [left, setLeft] = useState(700);
+
+  const USERDATA = useSelector((state) => state.userReducer);
 
   const dispatch = useDispatch();
 
@@ -38,16 +40,14 @@ const SideBar = ({ match, history }) => {
       window.removeEventListener("resize", updateWidth);
     };
   }, []);
-  
-  const logout = () => {
-    
-    dispatch(logoutAction(data.refresh_token, history, data.data.id));
 
+  const logout = () => {
+    dispatch(logoutAction(data.refresh_token, history, data.data.id));
   };
 
   return (
     <>
-      <div className="flex">
+      <div className="flex sm:hidden">
         <button
           onClick={() => setToggleMenu((prev) => !prev)}
           className={[
@@ -59,7 +59,7 @@ const SideBar = ({ match, history }) => {
         </button>
       </div>
       <aside
-        className="h-screen flex flex-col overflow-y-auto fixed sm:relative z-50 transition-all duration-300"
+        className="transition-all duration-300 bg-indigo-1000 max-h-screen h-screen overflow-y-auto min-h-full fixed sm:relative z-50"
         style={sideBarStyle}
       >
         {toggleMenu && (
@@ -76,13 +76,11 @@ const SideBar = ({ match, history }) => {
             />
           </div>
         )}
-        <div className="flex flex-col justify-center items-center mt-20">
-          {data?.data?.avatar ? (
+        <div className="flex flex-col justify-center items-center mt-10">
+          {USERDATA?.avatar ? (
             <img
-              src={data?.data?.avatar}
-              className="border border-gray-400 rounded-full p-2"
-              width={95}
-              height={95}
+              src={USERDATA?.avatar}
+              className="border border-gray-400 rounded-full object-cover w-20 h-20"
               alt=""
             />
           ) : (
@@ -96,11 +94,11 @@ const SideBar = ({ match, history }) => {
           )}
 
           <h1 className="text-white text-xl mt-4">
-            {data?.data?.name ? data.data.name : "User Name"}
+            {USERDATA?.name ? USERDATA.name : "User Name"}
           </h1>
           <h3 className="text-sm" style={{ color: "#7176B8" }}>
-            {data?.data?.profession
-              ? data?.data?.profession
+            {USERDATA?.profession
+              ? USERDATA?.profession
               : "User Profession"}
           </h3>
         </div>
@@ -110,7 +108,7 @@ const SideBar = ({ match, history }) => {
             <Link
               to="/"
               className={[
-                "nav-link focus:outline-none relative flex px-4 py-4 w-full text-indigo-300 hover:text-white",
+                "nav-link focus:outline-none relative flex px-4 py-4 w-full hover:text-white",
                 getNavLinkActive("/"),
               ].join(" ")}
             >
@@ -122,7 +120,7 @@ const SideBar = ({ match, history }) => {
               target="_blank"
               rel="noopener noreferrer"
               className={[
-                "nav-link focus:outline-none relative flex px-4 py-4 w-full text-indigo-300 hover:text-white",
+                "nav-link focus:outline-none relative flex px-4 py-4 w-full hover:text-white",
                 getNavLinkActive("http://localhost:4000/library"),
               ].join(" ")}
               href="http://localhost:4000/library"
@@ -133,7 +131,10 @@ const SideBar = ({ match, history }) => {
           <li>
             <Link
               to="/transaction"
-              className="nav-link focus:outline-none relative flex px-4 py-4 w-full text-indigo-300 hover:text-white"
+              className={[
+                "nav-link focus:outline-none relative flex px-4 py-4 w-full hover:text-white",
+                getNavLinkActive("/transaction"),
+              ].join(" ")}
             >
               Transactions
             </Link>
@@ -142,7 +143,7 @@ const SideBar = ({ match, history }) => {
             <Link
               to="/setting"
               className={[
-                "nav-link focus:outline-none relative flex px-4 py-4 w-full text-indigo-300 hover:text-white",
+                "nav-link focus:outline-none relative flex px-4 py-4 w-full hover:text-white",
                 getNavLinkActive("/setting"),
               ].join(" ")}
             >
@@ -153,7 +154,7 @@ const SideBar = ({ match, history }) => {
 
         <div className="my-auto"></div>
 
-        <ul className="mt-12">
+        <ul className="mt-28">
           <li>
             <button
               type="submit"

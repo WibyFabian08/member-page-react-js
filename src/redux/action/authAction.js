@@ -57,7 +57,7 @@ export const loginAction = (form, history) => (dispatch) => {
 export const registerAction = (data, history) => (dispatch) => {
   axios
     .post("http://localhost:4000/users/register", data)
-    .then((result) => {
+    .then(() => {
       history.push("/login");
     })
     .catch((err) => {

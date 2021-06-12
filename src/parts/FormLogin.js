@@ -7,8 +7,6 @@ import fieldErrors from "../helpers/fieldErrors";
 import { useForm } from "../helpers/hooks/useForm";
 import { loginAction } from "../redux/action/authAction";
 
-
-
 const FormLogin = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -45,17 +43,18 @@ const FormLogin = ({ history }) => {
           placeholder="Your Email Address"
           type="text"
           value={form.email}
-          onChange={(e) => setForm('email', e.target.value)}
+          onChange={(e) => setForm("email", e.target.value)}
         ></Input>
-         <Input
+        <Input
           name="password"
           labelname="Password"
           error={ERROR?.password?.message}
           placeholder="Your Password"
           type="password"
           value={form.password}
-          onChange={(e) => setForm('password', e.target.value)}
+          onChange={(e) => setForm("password", e.target.value)}
         ></Input>
+
         <button
           type="submit"
           className="button-form w-full px-4 py-2 text-white mt-2"

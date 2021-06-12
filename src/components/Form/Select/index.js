@@ -27,13 +27,13 @@ const Select = ({ onClick, children, name, fallbackText, value }) => {
   const selected = items.find((item) => item.props.value === value);
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <label className="text-md" style={{ color: "#132B50" }}>
         Occupation
       </label>
       <div
         className={[
-          "border border-gray-400 px-4 py-2",
+          "border border-gray-400 px-4 py-2 truncate ...",
           toggle ? "border-green-400" : "",
         ].join(" ")}
         ref={selectWrapper}
@@ -51,7 +51,7 @@ const Select = ({ onClick, children, name, fallbackText, value }) => {
               <div
                 key={index}
                 onClick={() => onClick({target: {value: item.props.value}})}
-                className="hover:bg-gray-300 cursor-pointer px-4 py-2 text-gray-400 z-10"
+                className="hover:bg-gray-300 cursor-pointer px-4 py-2 text-gray-400 z-10 "
               >
                 {item.props.value}
               </div>

@@ -15,6 +15,7 @@ import Login from "./Pages/Login";
 import MyClass from "./Pages/MyClass";
 import Register from "./Pages/Register";
 import DetailClass from "./Pages/DetailClass";
+import Setting from "./Pages/Setting";
 
 function App() {
   const history = createBrowserHistory({
@@ -55,6 +56,8 @@ function App() {
             path="/courses/:class/:chapter/:uid"
             component={DetailClass}
           ></MemberRoute>
+
+          <MemberRoute exact path="/setting" component={Setting}></MemberRoute>
 
           <Route path="*" component={NotFound}></Route>
         </Switch>
