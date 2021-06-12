@@ -17,7 +17,7 @@ const SideBar = ({ match, history }) => {
 
   const getNavLinkActive = (path) => {
     return match.path === path
-      ? "active text-white bg-indigo-900"
+      ? "active text-white bg-indigo-900 border-r-8 border-green-300"
       : "text-indigo-300";
   };
 
@@ -108,7 +108,7 @@ const SideBar = ({ match, history }) => {
             <Link
               to="/"
               className={[
-                "nav-link focus:outline-none relative flex px-4 py-4 w-full hover:text-white",
+                "nav-link focus:outline-none relative flex px-4 py-4 w-full hover:text-white ",
                 getNavLinkActive("/"),
               ].join(" ")}
             >
@@ -130,10 +130,10 @@ const SideBar = ({ match, history }) => {
           </li>
           <li>
             <Link
-              to="/transaction"
+              to="/transactions"
               className={[
                 "nav-link focus:outline-none relative flex px-4 py-4 w-full hover:text-white",
-                getNavLinkActive("/transaction"),
+                getNavLinkActive("/transactions"),
               ].join(" ")}
             >
               Transactions

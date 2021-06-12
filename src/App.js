@@ -16,6 +16,7 @@ import MyClass from "./Pages/MyClass";
 import Register from "./Pages/Register";
 import DetailClass from "./Pages/DetailClass";
 import Setting from "./Pages/Setting";
+import Transaction from "./Pages/Transaction";
 
 function App() {
   const history = createBrowserHistory({
@@ -58,6 +59,8 @@ function App() {
           ></MemberRoute>
 
           <MemberRoute exact path="/setting" component={Setting}></MemberRoute>
+
+          <MemberRoute exact path="/transactions" component={Transaction}></MemberRoute>
 
           <Route path="*" component={NotFound}></Route>
         </Switch>

@@ -14,7 +14,7 @@ const ListClassItem = ({ data }) => {
         <Link to={`/courses/${data.course_id}`} className="link-wrapped"></Link>
       </figure>
       <div className="decs mt-4">
-        <p className="text-lg" style={{ color: "#132B50" }}>
+        <p className="text-lg font-semibold" style={{ color: "#132B50" }}>
           {data?.course?.name}
         </p>
         <p

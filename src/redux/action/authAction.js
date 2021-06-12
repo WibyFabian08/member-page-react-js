@@ -4,6 +4,7 @@ export const loginAction = (form, history) => (dispatch) => {
   axios
     .post("http://localhost:4000/users/login", form)
     .then((result) => {
+      dispatch({type: 'SET_TOKEN', value: result.data.refresh_token})
       axios
         .get("http://localhost:4000/users", {
           headers: {
