@@ -11,8 +11,6 @@ const SideBar = ({ match, history }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [left, setLeft] = useState(700);
 
-  console.log(data)
-
   const USERDATA = useSelector((state) => state.userReducer);
 
   const dispatch = useDispatch();
