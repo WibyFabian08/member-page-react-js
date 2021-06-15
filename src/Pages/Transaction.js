@@ -1,25 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import formatDate from "../helpers/formatDate";
+import formatThousand from "../helpers/formatThousand";
 import SideBar from "../parts/SideBar";
 import Status from "../parts/Status";
 import { myCourseAction } from "../redux/action/courseAction";
-import { Link } from "react-router-dom";
-import formatThousand from "../helpers/formatThousand";
-import formatDate from "../helpers/formatDate";
+import { orderAction } from "../redux/action/orderAction";
 
 const Transaction = () => {
   const myCourse = useSelector((state) => state.myCourseReducer);
   const status = useSelector((state) => state.statusReducer);
   const message = useSelector((state) => state.messageReducer);
-  const token = useSelector((state) => state.tokenReducer);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(myCourseAction(token));
-  }, [dispatch]);
+    let token = JSON.parse(localStorage.getItem("BWAMICRO:token"));
 
-  console.log(myCourse);
+    dispatch(myCourseAction(token.refresh_token));
+    dispatch(orderAction());
+  }, [dispatch]);
 
   return (
     <div className="flex">

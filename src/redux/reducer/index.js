@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import { errorReducer, tokenReducer } from "./globalReducer";
 import { loginReducer, userReducer } from "./authReducer";
 import { statusReducer, myCourseReducer, messageReducer } from "./courseReducer";
+import {orderReducer} from './orderReducer';
 
 const reducer = combineReducers({
   errorReducer,
@@ -11,7 +12,8 @@ const reducer = combineReducers({
   statusReducer,
   myCourseReducer,
   messageReducer,
-  tokenReducer
+  tokenReducer,
+  orderReducer
 });
 
 export default reducer;

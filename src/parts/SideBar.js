@@ -11,6 +11,8 @@ const SideBar = ({ match, history }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [left, setLeft] = useState(700);
 
+  console.log(data)
+
   const USERDATA = useSelector((state) => state.userReducer);
 
   const dispatch = useDispatch();
@@ -77,9 +79,9 @@ const SideBar = ({ match, history }) => {
           </div>
         )}
         <div className="flex flex-col justify-center items-center mt-10">
-          {USERDATA?.avatar ? (
+          {data?.data?.vatar ? (
             <img
-              src={USERDATA?.avatar}
+              src={data?.data?.vatar}
               className="border border-gray-400 rounded-full object-cover w-20 h-20"
               alt=""
             />
@@ -94,7 +96,7 @@ const SideBar = ({ match, history }) => {
           )}
 
           <h1 className="text-white text-xl mt-4">
-            {USERDATA?.name ? USERDATA.name : "User Name"}
+            {data?.data?.name ? data?.data?.name : "User Name"}
           </h1>
           <h3 className="text-sm" style={{ color: "#7176B8" }}>
             {USERDATA?.profession
@@ -121,9 +123,9 @@ const SideBar = ({ match, history }) => {
               rel="noopener noreferrer"
               className={[
                 "nav-link focus:outline-none relative flex px-4 py-4 w-full hover:text-white",
-                getNavLinkActive("http://localhost:4000/library"),
+                getNavLinkActive("http://localhost:3000/courses"),
               ].join(" ")}
-              href="http://localhost:4000/library"
+              href="http://localhost:3000/courses"
             >
               Library
             </a>

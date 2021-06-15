@@ -28,7 +28,7 @@ const SettingForm = () => {
 
   const addPicture = useRef(null);
 
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState(null);
 
   const ERROR = fieldErrors(globalError);
 
@@ -39,6 +39,7 @@ const SettingForm = () => {
       setAvatar(image);
     });
 
+    form.avatar = avatar;
   }
 
   async function submit(e) {
@@ -100,7 +101,13 @@ const SettingForm = () => {
         </p>
       </section>
       <section className="flex items-center mt-5">
-        {form.avatar ? (
+        {avatar ? (
+          <img
+            src={avatar}
+            className="object-cover rounded-full w-20 h-20"
+            alt=""
+          />
+        ) : form.avatar ? (
           <img
             src={form.avatar}
             className="object-cover rounded-full w-20 h-20"

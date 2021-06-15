@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { ReactComponent as ArrowBack } from "../assets/images/arrow-back.svg";
 import MenuBlack from "../assets/images/menu-black.png";
 import Menu from "../assets/images/menu.png";
 
-import { Link } from "react-router-dom";
 
 const SideBarClass = ({ data, match, history, defaultURI }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [left, setLeft] = useState(700);
-
-  const dispatch = useDispatch();
 
   const getNavLinkActive = (path) => {
     return match.url === path || defaultURI === path

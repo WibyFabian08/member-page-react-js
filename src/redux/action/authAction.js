@@ -43,14 +43,15 @@ export const loginAction = (form, history) => (dispatch) => {
             userCookie
           )}; expires=${expires.toUTCString()}; path:/; ${production}`;
 
+          dispatch({type: 'SET_ERROR', value: null})
+
           history.push(redirect || "/");
         })
         .catch((err) => {
-          console.log(err.response.data.message);
+          dispatch({ type: "SET_ERROR", value: err?.response?.data?.message });
         });
     })
     .catch((err) => {
-      console.log(err.response.data.message);
       dispatch({ type: "SET_ERROR", value: err?.response?.data?.message });
     });
 };
@@ -59,6 +60,7 @@ export const registerAction = (data, history) => (dispatch) => {
   axios
     .post("http://localhost:4000/users/register", data)
     .then(() => {
+      dispatch({type: 'SET_ERROR', value: null})
       history.push("/login");
     })
     .catch((err) => {
@@ -80,5 +82,4 @@ export const logoutAction = (token, history, id) => (dispatch) => {
       .catch((err) => {
         console.log(err.response.data.message);
       });
- 
 };

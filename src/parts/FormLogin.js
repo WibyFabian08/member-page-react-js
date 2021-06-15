@@ -13,6 +13,7 @@ const FormLogin = ({ history }) => {
   const globalError = useSelector((state) => state.errorReducer);
 
   const ERROR = fieldErrors(globalError);
+  const errorInput = globalError;
 
   const [form, setForm] = useForm({
     email: "",
@@ -39,7 +40,7 @@ const FormLogin = ({ history }) => {
         <Input
           name="email"
           labelname="Email Address"
-          error={ERROR?.email?.message}
+          error={ERROR ? ERROR?.email?.message : errorInput}
           placeholder="Your Email Address"
           type="text"
           value={form.email}
@@ -48,7 +49,7 @@ const FormLogin = ({ history }) => {
         <Input
           name="password"
           labelname="Password"
-          error={ERROR?.password?.message}
+          error={ERROR ? ERROR?.password?.message : errorInput}
           placeholder="Your Password"
           type="password"
           value={form.password}

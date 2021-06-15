@@ -21,9 +21,9 @@ const EmptyState = () => {
         let's find a class for you <br /> and earn all benefits for the brighter
         furute
       </p>
-      <Link to="/login" className="text-white button-form px-4 py-2 mt-5">
+      <a href="http://localhost:3000/courses" target="_blank" rel="noopener noreferrer" className="text-white button-form px-4 py-2 mt-5">
         Find Class
-      </Link>
+      </a>
     </div>
   );
 };

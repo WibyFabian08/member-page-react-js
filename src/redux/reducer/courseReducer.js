@@ -25,7 +25,7 @@ export const statusReducer = (state = initialStatusState, action) => {
     return state;
 }
 
-const initialMessageState = '';
+const initialMessageState = null;
 
 export const messageReducer = (state = initialMessageState, action) => {
     if(action.type === 'SET_MESSAGE') {

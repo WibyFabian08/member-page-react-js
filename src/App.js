@@ -17,6 +17,7 @@ import Register from "./Pages/Register";
 import DetailClass from "./Pages/DetailClass";
 import Setting from "./Pages/Setting";
 import Transaction from "./Pages/Transaction";
+import Congratulation from "./Pages/Congratulation";
 
 function App() {
   const history = createBrowserHistory({
@@ -38,6 +39,8 @@ function App() {
           <GuestRoute path="/login" component={Login}></GuestRoute>
           <GuestRoute path="/register" component={Register}></GuestRoute>
           <GuestRoute path="/private" component={UnAuthenticated}></GuestRoute>
+
+          <GuestRoute path="/congratulation" component={Congratulation}></GuestRoute>
 
           <MemberRoute exact path="/" component={MyClass}></MemberRoute>
           <MemberRoute

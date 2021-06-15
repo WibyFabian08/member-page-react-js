@@ -35,10 +35,12 @@ export const joinClassAction = (id, history) => (dispatch) => {
     .then((result) => {
       dispatch({ type: "SET_STATUS", value: "ok" });
       dispatch({ type: "SET_JOIN_CLASS", value: result.data });
-      history.push("/");
+      console.log(result?.data?.data?.snap_url)
+      if(result?.data?.data?.snap_url) {
+        window.location.href  = result?.data?.data?.snap_url;
+      }
     })
     .catch((err) => {
-      console.log(err.response.data.message);
       dispatch({ type: "SET_STATUS", value: "error" });
       dispatch({ type: "SET_MESSAGE", value: err.response.data.message });
     });
