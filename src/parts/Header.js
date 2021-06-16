@@ -11,6 +11,8 @@ import { useState } from "react";
 function Header(props) {
   const linkColor = props.onDark ? "text-white" : "#132B50";
   const [toggle, setToggle] = useState(false);
+  const TOP = toggle ? 0 : -700;
+
   return (
     <>
       <header className="flex justify-between items-center container mx-auto mt-0 lg:mt-10 invisible md:visible">
@@ -78,17 +80,25 @@ function Header(props) {
           </li>
         </ul>
       </header>
-      <header className="flex flex-col sm:hidden -mt-14 overflow-hidden">
-        {!toggle && (
+      {!toggle && (
+        <>
+          <div style={{ height: 54, width: 32 }} className="sm:hidden absolute px-3 left-0 top-0 z-50">
+            {props.dark ? <DarkLogo></DarkLogo> : <LightLogo></LightLogo>}
+          </div>
           <button
             onClick={() => setToggle(!toggle)}
-            className={["toggle z-100 p-3 focus:outline-none sm:hidden"].join(
-              " "
-            )}
+            className={[
+              "toggle z-100 p-3 focus:outline-none sm:hidden absolute right-0 top-0 z-50",
+            ].join(" ")}
           >
             <img src={MenuBlack} width={30} height={30} alt="" />
           </button>
-        )}
+        </>
+      )}
+      <header
+        className="flex flex-col sm:hidden absolute inset-0 overflow-hidden h-screen transition-all duration-300"
+        style={{ top: TOP }}
+      >
         {toggle && (
           <ul
             className="flex flex-col overflow-hidden transition-all duration-300"
