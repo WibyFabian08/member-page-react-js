@@ -10,10 +10,10 @@ const Login = (props) => {
 
   return (
     <>
-      <section className="container mx-auto mt-10 overflow-hidden">
+      <section className="overflow-hidden">
         <Header dark path='login'></Header>
       </section>
-      <section className="mt-20">
+      <section className="mt-10">
         <FormLogin></FormLogin>
       </section>
       <section className="mt-24">

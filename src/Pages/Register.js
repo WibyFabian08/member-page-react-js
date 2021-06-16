@@ -11,10 +11,10 @@ const Register = (props) => {
 
     return (
         <>
-            <section className="container mx-auto mt-10 overflow-hidden">
+            <section className="overflow-hidden">
                 <Header dark path='register'></Header>
             </section>
-            <section className="mt-20">
+            <section className="mt-10">
                 <FormRegister></FormRegister>
             </section>
             <section className="mt-24">
